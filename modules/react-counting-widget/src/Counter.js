@@ -1,31 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CounterService from './CounterService';
+import React from "react";
+import ReactDOM from "react-dom";
+import CounterService from "./CounterService";
 
 const Service = new CounterService();
 
 class Counter extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 0
-        };
-        this.service = Service;
-        this.service.setCounter(this);
-        this.increment = this.increment.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 10,
+    };
+    this.service = Service;
+    this.service.setCounter(this);
+    this.decrement = this.decrement.bind(this);
+    this.increment = this.increment.bind(this);
+  }
 
-    increment() {
-        this.service.increment();
-    }
+  decrement() {
+    this.service.decrement();
+  }
 
-    render() {
-        return (
-            <div>
-                <h2>{this.state.value}</h2>
-            </div>
-        )
-    }
+  increment() {
+    this.service.increment();
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>{this.state.value}</h2>{" "}
+        <button onClick={this.increment}> Add 1 </button>
+        <button onClick={this.decrement}> Minus 1 </button>
+      </div>
+    );
+  }
 }
 
 export default Counter;
